@@ -5,7 +5,7 @@ import {ApolloClient, InMemoryCache, HttpLink, ApolloProvider} from "@apollo/cli
 import './index.css';
 import App from './App';
 
-const URL = "https://library-applicationn.herokuapp.com/";
+const GRAPHQL_ENDPOINT = "https://library-applicationn.herokuapp.com/";
 
 const client = new ApolloClient({
   cache: new InMemoryCache({
@@ -13,7 +13,7 @@ const client = new ApolloClient({
     resultCaching: false
   }),
   link: new HttpLink({
-    uri: URL
+    uri: GRAPHQL_ENDPOINT
   }),
   queryDeduplication: false
 });
