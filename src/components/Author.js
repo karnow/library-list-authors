@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Flex, Heading, Image } from "@chakra-ui/react";
 
 export default function Author({author}) {
