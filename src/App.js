@@ -9,8 +9,8 @@ import {BrowserRouter as Router, Route, Link as Routerlink} from "react-router-d
 function App() {
   return (
     <Router>
-      <Flex direction="column" align="center" width="75%" mx="auto">
-        <Flex align="center" justifyContent="space-between" width="100%">
+      <Flex direction="column" align="center" width={["100%","75%","60%"]} mx="auto">
+        <Flex direction={["column",null,"row"]} align="center" justifyContent="space-between" width="100%">
         <Link to='/' as={Routerlink}>
       <Heading as="h1">Personal Library</Heading>
        </Link>
