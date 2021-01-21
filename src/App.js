@@ -5,6 +5,7 @@ import UsersPage from "./pages/UsersPage";
 import BooksPage from "./pages/BooksPage";
 import {BrowserRouter as Router, Route, Link as Routerlink} from "react-router-dom";
 import BookDetailsPage from "./pages/BookDetailsPage";
+import AuthorDetailsPage from "./pages/AuthorDetailsPage";
 
 
 function App() {
@@ -29,8 +30,8 @@ function App() {
             <Box as="span" margin="10px">Users</Box>
               </Link>
 {/* 
-              <Link to='/books/:id' as={Routerlink}>
-            <Box as="span" margin="10px">BookDetailsPage</Box>
+              <Link to='/author/:authorId' as={Routerlink}>
+            <Box as="span" margin="10px">AuthorDetailsPage</Box>
               </Link> */}
 
               <Divider orientation='vertical' />
@@ -42,6 +43,7 @@ function App() {
               <Route path='/books/:bookId' component={BookDetailsPage} />
       
               <Route path='/authors' component={AuthorsPage} />
+              <Route path='/author/:authorId' component={AuthorDetailsPage} />
               
               <Route path='/users' component={UsersPage}/>
                 

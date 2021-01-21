@@ -19,7 +19,7 @@ export default function BookDetails({ book }) {
         />
         <Heading as="h4" size="sm">
           Written by{" "}
-          <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
+          <Link to={`/author/${book.author.id}`}>{book.author.name}</Link>
         </Heading>
         <Box as="article">{book.description}</Box>
       </Box>
