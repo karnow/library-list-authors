@@ -4,6 +4,7 @@ import AuthorsPage from './pages/AuthorsPage';
 import UsersPage from "./pages/UsersPage";
 import BooksPage from "./pages/BooksPage";
 import {BrowserRouter as Router, Route, Link as Routerlink} from "react-router-dom";
+import BookDetailsPage from "./pages/BookDetailsPage";
 
 
 function App() {
@@ -27,13 +28,18 @@ function App() {
               <Link to='/users' as={Routerlink}>
             <Box as="span" margin="10px">Users</Box>
               </Link>
+{/* 
+              <Link to='/books/:id' as={Routerlink}>
+            <Box as="span" margin="10px">BookDetailsPage</Box>
+              </Link> */}
 
               <Divider orientation='vertical' />
-
              
         </Flex>
             </Flex>
               <Route path='/' component={BooksPage} exact/>
+
+              <Route path='/books/:bookId' component={BookDetailsPage} />
       
               <Route path='/authors' component={AuthorsPage} />
               

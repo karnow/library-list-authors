@@ -1,10 +1,12 @@
 import React from 'react';
 import {gql, useQuery} from "@apollo/client";
 import Book from '../components/Book';
-import { Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
+import Link from '../components/Link';
 
-const ALL_BOOKS_QUERY = gql`query GetAllBooks {
+const GET_BOOKS_QUERY = gql`query GetBooks {
   books {
+    id
     title
     cover {
       url
@@ -17,7 +19,7 @@ const ALL_BOOKS_QUERY = gql`query GetAllBooks {
 
 
 export default function BooksPage() {
- const { loading, error, data} = useQuery(ALL_BOOKS_QUERY);
+ const { loading, error, data} = useQuery(GET_BOOKS_QUERY);
  if (loading) {
      return <p>loading ...</p>
  }
@@ -27,9 +29,15 @@ export default function BooksPage() {
 
  const {books} = data;
 
-return <Flex wrap="wrap" justifyContent="space-around"> 
-    
-  {books.map(book => <Book book={book}/>)}
-  </Flex>
+return (
+    <Box w="100%">
+  {books.map (book =>(
+    <Link key={book.id} to={`/books/${book.id}`}>
+      
+    <Book {...book}/>
+    </Link>
+  ))}
+</Box>
+)
 
 }
