@@ -2,27 +2,21 @@ import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Box } from "@chakra-ui/react";
 import { useParams } from "react-router";
-import AuthorDetails from "../components/AuthorDetails";
+
+import AuthorDetails, {AUTHOR_DETAILS_FIRLEDS_FRAGMENT} from "../components/AuthorDetails";
+
+
+
 
 
 const GET_AUTHOR_QUERY = gql`
   query GetAuthor($authorId: ID!) {
     author(id: $authorId) {
-        id
-    name
-    photo {
-      url
-    }
-    bio
-    books {
-      id
-      title
-      cover {
-        url
-      }
-    }
+    __typename
+    ...authorDetailFields
   }
 }
+${AUTHOR_DETAILS_FIRLEDS_FRAGMENT}
 `;
 
 export default function AuthorDetailsPage() {

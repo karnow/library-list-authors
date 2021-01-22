@@ -11,7 +11,7 @@ const GRAPHQL_ENDPOINT = "https://library-applicationn.herokuapp.com/";
 
 const client = new ApolloClient({
   cache: new InMemoryCache({
-    addTypename: false,
+    addTypename: true,
     resultCaching: false
   }),
   link: new HttpLink({

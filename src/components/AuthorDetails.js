@@ -1,8 +1,25 @@
 import React from "react";
 import { Flex, Heading, Image, Box } from "@chakra-ui/react";
 import Link from "./Link";
-import Book from "./Book";
+import Book, {BOOK_FIELDS_FRAGMENT} from "./Book";
+import { gql } from "@apollo/client";
 
+
+export const AUTHOR_DETAILS_FIRLEDS_FRAGMENT =gql`
+fragment authorDetailFields on Author {
+    id
+    name
+    photo {
+      url
+    }
+    bio
+    books {
+      __typename
+      ...bookFields
+    }
+}
+${BOOK_FIELDS_FRAGMENT}
+`;
 
 
 export default function AuthorDetails({ author }) {
