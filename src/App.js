@@ -39,7 +39,6 @@ function App() {
         </Flex>
             </Flex>
               <Route path='/' component={BooksPage} exact/>
-
               <Route path='/books/:bookId' component={BookDetailsPage} />
       
               <Route path='/authors' component={AuthorsPage} />
