@@ -2,24 +2,17 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import { gql, useQuery } from "@apollo/client";
-import UserDetails from "../components/UserDetails";
+import UserDetails, {USER_DETAILS_FIELDS_FRAGMENT} from "../components/UserDetails";
+
 
 const GET_USER_QUERY = gql`
   query GetBook($userId: ID!) {
     user(id: $userId)  {
-    id
-    name
-    email
-    info
-    avatar {
-      image {
-        url
-      }
-      color
-    }
+    __typename
+    ...userDetailFields
   }
   }
- 
+${USER_DETAILS_FIELDS_FRAGMENT}
 `;
 
 export default function UserDetailsPage() {

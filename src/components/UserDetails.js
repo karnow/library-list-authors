@@ -1,5 +1,20 @@
 import React from "react";
 import { Flex, Heading, Avatar, Box } from "@chakra-ui/react";
+import { gql } from "@apollo/client";
+
+export const USER_DETAILS_FIELDS_FRAGMENT = gql`
+fragment userDetailFields on User {
+    id
+    name
+    email
+    info
+    avatar {
+      image {
+        url
+      }
+      color
+    }
+}`
 
 export default function User({ user }) {
   return (
