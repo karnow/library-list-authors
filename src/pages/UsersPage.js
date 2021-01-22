@@ -3,19 +3,16 @@ import {gql, useQuery} from "@apollo/client";
 import User from '../components/User';
 import { SimpleGrid } from '@chakra-ui/react';
 import Link from '../components/Link';
+import {USER_FIELDS_FRAGMENT} from '../components/User';
 
 const ALL_USERS_QUERY = gql`query GetAllUsers {
     users {
-      id
-      name
-      avatar {
-        image {
-          url
-        }
-        color
-      }
+     __typename
+     ...userFields
     }
-  }`
+  }
+${USER_FIELDS_FRAGMENT}
+`
 
 
 export default function UsersPage() {
