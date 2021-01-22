@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Link as Routerlink} from "react-router-d
 import BookDetailsPage from "./pages/BookDetailsPage";
 import AuthorDetailsPage from "./pages/AuthorDetailsPage";
 import UserDetailsPage from "./pages/UserDetailsPage";
+import EverythingPage from "./pages/EverythingPage";
 
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
             <Box as="span" margin="10px">Users</Box>
               </Link>
 
-              {/* <Link to='/user/:userId' as={Routerlink}>
-            <Box as="span" margin="10px">UserDetailsPage</Box>
+              {/* <Link to='/admin/everything' as={Routerlink}>
+            <Box as="span" margin="10px">EverythingPage</Box>
               </Link> */}
 
               <Divider orientation='vertical' />
@@ -47,6 +48,8 @@ function App() {
               
               <Route path='/users' component={UsersPage}/>
               <Route path='/user/:userId' component={UserDetailsPage}/>
+              
+              <Route path='/admin/everything' component={EverythingPage}/>
                 
       </Flex>
       
