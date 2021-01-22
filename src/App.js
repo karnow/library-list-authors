@@ -8,6 +8,7 @@ import BookDetailsPage from "./pages/BookDetailsPage";
 import AuthorDetailsPage from "./pages/AuthorDetailsPage";
 import UserDetailsPage from "./pages/UserDetailsPage";
 import EverythingPage from "./pages/EverythingPage";
+import AnythingDetailsPage from "./pages/AnythingDetailsPage";
 
 
 function App() {
@@ -31,9 +32,9 @@ function App() {
               <Link to='/users' as={Routerlink}>
             <Box as="span" margin="10px">Users</Box>
               </Link>
-
-              {/* <Link to='/admin/everything' as={Routerlink}>
-            <Box as="span" margin="10px">EverythingPage</Box>
+{/* 
+              <Link to='/admin/anything/:anyId' as={Routerlink}>
+            <Box as="span" margin="10px">AnythingDetailsPage</Box>
               </Link> */}
 
               <Divider orientation='vertical' />
@@ -50,6 +51,7 @@ function App() {
               <Route path='/user/:userId' component={UserDetailsPage}/>
               
               <Route path='/admin/everything' component={EverythingPage}/>
+              <Route path='/admin/anything/:anyId' component={AnythingDetailsPage}/>
                 
       </Flex>
       
