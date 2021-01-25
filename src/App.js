@@ -19,6 +19,7 @@ function App() {
         <Link to='/' as={Routerlink}>
       <Heading as="h1">Personal Library</Heading>
        </Link>
+       
             <Flex>
               <Link to='/' as={Routerlink}>
             <Box as="span" margin="10px">Books</Box>
@@ -32,10 +33,10 @@ function App() {
               <Link to='/users' as={Routerlink}>
             <Box as="span" margin="10px">Users</Box>
               </Link>
-{/* 
+
               <Link to='/admin/anything/:anyId' as={Routerlink}>
             <Box as="span" margin="10px">AnythingDetailsPage</Box>
-              </Link> */}
+              </Link>
 
               <Divider orientation='vertical' />
              
