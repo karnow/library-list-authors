@@ -1,5 +1,40 @@
 import React from "react";
 import { Stack, Image, Heading, Box } from "@chakra-ui/react";
+import { gql } from "@apollo/client";
+
+export const normalizeAnything = anything => ({
+  ...anything.nested,
+  ...anything
+})
+
+export const NORMALIZED_ANYTHING_FIELDS_FRAGMENT =gql`
+fragment normalizedAntyhingFields on Anything {
+  ...on Author {
+    name
+    info: bio
+    img: photo {
+      url
+    }
+  }
+  ...on User {
+    name
+    info
+    nested: avatar {
+      img: image{
+        url
+      }
+    }
+  }
+  ...on Book {
+    name: title
+    info: description
+    img: cover {
+      url
+    }
+  }
+  
+}
+`;
 
 const COLORS_BY_TYPENAME = {
   Book: "red.200",
@@ -19,7 +54,7 @@ function NormalizedAnything({ normalizedAnything }) {
     >
       <Stack isInline>
         <Image
-          size="100px"
+          boxSize="100px"
           rounded={5}
           objectFit="cover"
           src={normalizedAnything.img && normalizedAnything.img.url}
