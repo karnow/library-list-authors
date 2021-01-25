@@ -5,7 +5,7 @@ import {ApolloClient, InMemoryCache, HttpLink, ApolloProvider} from "@apollo/cli
 import './index.css';
 import App from './App';
 // import {BrowserRouter as Router} from "react-router-dom";
-import {theme , ThemeProvider, CSSReset} from "@chakra-ui/react";
+import {theme , ThemeProvider, CSSReset, ChakraProvider} from "@chakra-ui/react";
 
 const GRAPHQL_ENDPOINT = "https://library-applicationn.herokuapp.com/";
 
@@ -29,12 +29,12 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+    <ChakraProvider theme={theme}>
       
-      <ThemeProvider theme={theme}>
         <CSSReset/>
     <App />
-    </ThemeProvider>
     
+    </ChakraProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

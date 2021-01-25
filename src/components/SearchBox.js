@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Input, FormLabel, IconButton, Stack } from "@chakra-ui/react";
+import { Input, FormLabel, IconButton, Stack, Icon } from "@chakra-ui/react";
+import {SearchIcon} from "@chakra-ui/icons"
 
 export default function SearchBox({ searchQuery, onSearchQueryChange }) {
   const [searchQueryDraft, setSearchQueryDraft] = useState(searchQuery);
@@ -35,7 +36,7 @@ export default function SearchBox({ searchQuery, onSearchQueryChange }) {
               setEditing(false);
               onSearchQueryChange(searchQueryDraft);
             }}
-            icon="search"
+            icon={<SearchIcon />}
           />
         )}
         {showEditButton && (
