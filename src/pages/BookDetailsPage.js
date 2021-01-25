@@ -31,7 +31,7 @@ export default function BookDetailsPage() {
   return (
      
     <Box>
-      
+      <p>Hello</p>
      <BookDetails book={book} /> 
     </Box> 
    

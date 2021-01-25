@@ -34,7 +34,7 @@ ReactDOM.render(
         <CSSReset/>
     <App />
     </ThemeProvider>
-      
+    
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

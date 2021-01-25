@@ -1,8 +1,9 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Box, Heading } from "@chakra-ui/react";
-import { useParams } from "react-router";
+
 import AnythingDetails, { ANYTHING_DETAILS_FIELDS_FRAGMENT } from "../components/AnythingDetails";
+import { useParams } from "react-router";
 
 
 const GET_ANYTHING_QUERY = gql`
