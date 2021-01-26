@@ -51,9 +51,13 @@ function App() {
       
               <Route path='/authors' element={<AuthorsPage/>} />
               <Route path='/author/:authorId' element={<AuthorDetailsPage/>} />
+              <Route path='/authors/search/' element={<AuthorsPage/>} />
+              <Route path='/authors/search/:searchQuery' element={<AuthorsPage/>} />
               
               <Route path='/users' element={<UsersPage/>}/>
               <Route path='/user/:userId' element={<UserDetailsPage/>}/>
+              <Route path='/users/search/' element={<UsersPage/>} />
+              <Route path='/users/search/:searchQuery' element={<UsersPage/>} />
               
               <Route path='/admin/everything' element={<EverythingPage/>}/>
               <Route path='/admin/anything/:anyId' element={<AnythingDetailsPage/>}/>
