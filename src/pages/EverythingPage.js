@@ -24,7 +24,9 @@ export default function EverythingPage() {
   }
 
   const { everything } = data;
+  console.log(everything)
   const normalizedEverything = everything.map(normalizeAnything) 
+  console.log(normalizedEverything)
   return (
     <Box w="100%" bg="red.100" p={5}>
       <Heading textAlign="center" color="red.500">

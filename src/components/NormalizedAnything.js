@@ -32,11 +32,23 @@ fragment normalizedAntyhingFields on Anything {
       url
     }
   }
+
+  ...on BookCopy {
+    id
+    nested: book {
+      name: title
+      info: description
+      img: cover {
+      url
+      }
+    }
+  }
   
 }
 `;
 
 const COLORS_BY_TYPENAME = {
+  BookCopy: "purple.200",
   Book: "red.200",
   Author: "green.200",
   User: "blue.200"
