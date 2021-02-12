@@ -29,7 +29,7 @@ export default function User({ user }) {
           {user.name}
         </Heading>
       </Flex>
-      <Box as="article">{user.info}</Box>
+      <Box as="article">{user.info}</Box> 
     </Flex>
   );
 }

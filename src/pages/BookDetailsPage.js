@@ -34,10 +34,11 @@ export default function BookDetailsPage() {
     return <p>Could not load book "{bookId}"</p>;
   }
   const { book } = data;
+  
   return (
      
     <Box>
-      <p>Hello</p>
+      
       <BookDetails book={book} /> 
       <Heading as="h3" size="lg" textAlign="center">
         Copies
