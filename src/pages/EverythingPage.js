@@ -1,7 +1,8 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Box, Heading } from "@chakra-ui/react";
-import NormalizedAnything, {NORMALIZED_ANYTHING_FIELDS_FRAGMENT, normalizeAnything} from "../components/NormalizedAnything";
+import NormalizedAnything, { NORMALIZED_ANYTHING_FIELDS_FRAGMENT, normalizeAnything } from "../components/NormalizedAnything";
+import Link from "../components/Link";
 
 
 const GET_EVERYTHING_QUERY = gql`
@@ -27,13 +28,19 @@ export default function EverythingPage() {
   console.log(everything)
   const normalizedEverything = everything.map(normalizeAnything) 
   console.log(normalizedEverything)
+
   return (
     <Box w="100%" bg="red.100" p={5}>
       <Heading textAlign="center" color="red.500">
         Warning! Admin area!
       </Heading>
-      {normalizedEverything.map(anything => (
-        <NormalizedAnything normalizedAnything={anything} />
+      {normalizedEverything.map(normalizedAnything => (
+      <Link
+          to={`/admin/anything/${normalizedAnything.id}`}
+          key={normalizedAnything.id}
+        >
+          <NormalizedAnything normalizedAnything={normalizedAnything} />
+          </Link>
       ))}
     </Box>
   );
