@@ -46,7 +46,7 @@ export default function BookCopy({
           <Image src={book.cover.url} objectFit="cover" mr="3" />
         </AspectRatio>
         {showOwner && (
-          <Link to={`/users/${owner.id}`}>
+          <Link to={`/user/${owner.id}`}>
             <Avatar
               position="absolute"
               bottom="0"
@@ -58,7 +58,7 @@ export default function BookCopy({
         )}
 
         {showBorrower && borrower && (
-          <Link to={`/users/${borrower.id}`}>
+          <Link to={`/user/${borrower.id}`}>
             <Avatar
               position="absolute"
               bottom="0"
