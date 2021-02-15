@@ -3,8 +3,8 @@ import { Flex, Heading, Box, Grid, GridItem } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import { gql, useQuery } from "@apollo/client";
 import UserDetails, { USER_DETAILS_FIELDS_FRAGMENT } from "../components/UserDetails";
-import BookCopy,{BOOK_COPY_FIELDS_FRAGMENT} from '../components/BookCopy';
-
+import BookCopy from '../components/BookCopy';
+import { BOOK_COPY_FIELDS_FRAGMENT } from '../components/BookCopy/fragments';
 
 
 const GET_USER_QUERY = gql`

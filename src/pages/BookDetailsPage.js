@@ -3,7 +3,8 @@ import { gql, useQuery } from "@apollo/client";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import BookDetails, {BOOK_DETAILS_FIELDS_FRAGMENT} from "../components/BookDetails";
-import BookCopy, { BOOK_COPY_FIELDS_FRAGMENT } from "../components/BookCopy";
+import BookCopy from "../components/BookCopy";
+import {BOOK_COPY_FIELDS_FRAGMENT} from "../components/BookCopy/fragments";
 
 
 

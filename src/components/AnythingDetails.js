@@ -4,7 +4,8 @@ import { BOOK_DETAILS_FIELDS_FRAGMENT } from "../components/BookDetails";
 import { gql } from "@apollo/client";
 import AuthorDetails, {AUTHOR_DETAILS_FIRLEDS_FRAGMENT} from "./AuthorDetails";
 import UserDetails, { USER_DETAILS_FIELDS_FRAGMENT } from "./UserDetails";
-import BookCopy, {BOOK_COPY_FIELDS_FRAGMENT }from '../components/BookCopy';
+import BookCopy from '../components/BookCopy';
+import { BOOK_COPY_FIELDS_FRAGMENT } from '../components/BookCopy/fragments';
 
 export const ANYTHING_DETAILS_FIELDS_FRAGMENT =gql`
 fragment anythingDetailsFields on Anything {
