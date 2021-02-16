@@ -7,7 +7,7 @@ import BookCopy from '../components/BookCopy';
 import { BOOK_COPY_FIELDS_FRAGMENT } from '../components/BookCopy/fragments';
 
 
-const GET_USER_QUERY = gql`
+export const GET_USER_QUERY = gql`
   query GetBook($userId: ID!) {
     user(id: $userId)  {
     __typename
@@ -52,7 +52,7 @@ export default function UserDetailsPage() {
          Owner books
       </Heading>
         <Flex wrap="wrap">
-         {user.ownedBookCopies.map(bookCopy => <BookCopy key={bookCopy.id} bookCopy={bookCopy} showOwner showBorrower/>)}
+         {user.ownedBookCopies.map(bookCopy => <BookCopy key={bookCopy.id} bookCopy={bookCopy} showOwner showBorrower showActions/>)}
         </Flex>
         </GridItem>
         
@@ -61,7 +61,7 @@ export default function UserDetailsPage() {
         Borrowed books
        </Heading>
         <Flex wrap="wrap">
-         {user.borrowedBookCopies.map(bookCopy => <BookCopy key={bookCopy.id} bookCopy={bookCopy} showOwner showBorrower/>)}
+         {user.borrowedBookCopies.map(bookCopy => <BookCopy key={bookCopy.id} bookCopy={bookCopy} showOwner showBorrower showActions/>)}
         </Flex>
       </GridItem>
       </Grid>

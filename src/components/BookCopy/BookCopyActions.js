@@ -4,8 +4,8 @@ import BorrowButton from "./BorrowButton";
 import ReturnButton from "./ReturnButton";
 
 export default function BookCopyActions({ bookCopy, ...remainingProps }) {
-  const canBeReturned = true || !!bookCopy.borrower;
-  const canBeBorrowed = true || !bookCopy.borrower;
+  const canBeReturned = !!bookCopy.borrower;
+  const canBeBorrowed = !bookCopy.borrower;
 
   return (
     <Stack {...remainingProps}>
