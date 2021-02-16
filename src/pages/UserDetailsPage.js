@@ -5,6 +5,7 @@ import { gql, useQuery } from "@apollo/client";
 import UserDetails, { USER_DETAILS_FIELDS_FRAGMENT } from "../components/UserDetails";
 import BookCopy from '../components/BookCopy';
 import { BOOK_COPY_FIELDS_FRAGMENT } from '../components/BookCopy/fragments';
+import BorrowRandomButton from '../components/BorrowRandomBook';
 
 
 export const GET_USER_QUERY = gql`
@@ -42,8 +43,10 @@ export default function UserDetailsPage() {
   return (
   <>
     <Flex wrap="wrap" justify="space-around" marginBottom="40px">
-       <UserDetails user={user} />
+        <UserDetails user={user} />
+        
       </Flex>
+      <BorrowRandomButton/>
       
     <Grid templateColumns="repeat(5, 1fr)" gap={2}>
       <GridItem colSpan={2} h="10">
