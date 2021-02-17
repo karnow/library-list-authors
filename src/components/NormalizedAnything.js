@@ -10,6 +10,7 @@ export const normalizeAnything = anything => ({
 export const NORMALIZED_ANYTHING_FIELDS_FRAGMENT =gql`
 fragment normalizedAntyhingFields on Anything {
   ...on Author {
+    id
     name
     info: bio
     img: photo {
@@ -17,6 +18,7 @@ fragment normalizedAntyhingFields on Anything {
     }
   }
   ...on User {
+    id
     name
     info
     nested: avatar {
@@ -26,6 +28,7 @@ fragment normalizedAntyhingFields on Anything {
     }
   }
   ...on Book {
+    id
     name: title
     info: description
     img: cover {
