@@ -7,8 +7,8 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import BookDetailsPage from "./pages/BookDetailsPage";
 import AuthorDetailsPage from "./pages/AuthorDetailsPage";
 import UserDetailsPage from "./pages/UserDetailsPage";
-import EverythingPage from "./pages/EverythingPage";
-import AnythingDetailsPage from "./pages/AnythingDetailsPage";
+import ResourcesPage from "./pages/ResourcesPage";
+import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import Link from "./components/Link";
 
 
@@ -59,8 +59,9 @@ function App() {
               <Route path='/users/search/' element={<UsersPage/>} />
               <Route path='/users/search/:searchQuery' element={<UsersPage/>} />
               
-              <Route path='/admin/everything' element={<EverythingPage/>}/>
-              <Route path='/admin/anything/:anyId' element={<AnythingDetailsPage/>}/>
+              
+              <Route path='/admin/resources' element={<ResourcesPage/>}/>
+              <Route path='/admin/resource/:anyId' element={<ResourceDetailsPage/>}/>
               </Routes>
       </Flex>
       

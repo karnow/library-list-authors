@@ -2,15 +2,14 @@ import React from "react";
 import { Stack, Image, Heading, Box } from "@chakra-ui/react";
 import { gql } from "@apollo/client";
 
-export const normalizeAnything = anything => ({
-  ...anything.nested,
-  ...anything
+export const normalizeResource = resource => ({
+  ...resource.nested,
+  ...resource
 })
 
-export const NORMALIZED_ANYTHING_FIELDS_FRAGMENT =gql`
-fragment normalizedAntyhingFields on Anything {
+export const NORMALIZED_RESOURCE_FIELDS_FRAGMENT =gql`
+fragment normalizedResourceFields on Resource {
   ...on Author {
-    id
     name
     info: bio
     img: photo {
@@ -18,7 +17,6 @@ fragment normalizedAntyhingFields on Anything {
     }
   }
   ...on User {
-    id
     name
     info
     nested: avatar {
@@ -28,7 +26,6 @@ fragment normalizedAntyhingFields on Anything {
     }
   }
   ...on Book {
-    id
     name: title
     info: description
     img: cover {
@@ -37,8 +34,7 @@ fragment normalizedAntyhingFields on Anything {
   }
 
   ...on BookCopy {
-    id
-    nested: book {
+      nested: book {
       name: title
       info: description
       img: cover {
@@ -57,12 +53,12 @@ const COLORS_BY_TYPENAME = {
   User: "blue.200"
 };
 
-function NormalizedAnything({ normalizedAnything }) {
+function NormalizedResource({ normalizedResource }) {
   return (
     <Stack
       w="100%"
       my={3}
-      bg={COLORS_BY_TYPENAME[normalizedAnything.__typename]}
+      bg={COLORS_BY_TYPENAME[normalizedResource.__typename]}
       p={3}
       overflow="hidden"
       rounded={5}
@@ -72,14 +68,14 @@ function NormalizedAnything({ normalizedAnything }) {
           boxSize="100px"
           rounded={5}
           objectFit="cover"
-          src={normalizedAnything.img && normalizedAnything.img.url}
+          src={normalizedResource.img && normalizedResource.img.url}
         />
         <Stack>
           <Heading as="h4" size="sm">
-            {normalizedAnything.__typename}
+            {normalizedResource.__typename}
           </Heading>
           <Heading as="h3" size="md">
-            {normalizedAnything.name}
+            {normalizedResource.name}
           </Heading>
           <Box
             as="article"
@@ -88,7 +84,7 @@ function NormalizedAnything({ normalizedAnything }) {
             overflow="hidden"
             textOverflow="ellipsis"
           >
-            {normalizedAnything.info}
+            {normalizedResource.info}
           </Box>
         </Stack>
       </Stack>
@@ -96,4 +92,4 @@ function NormalizedAnything({ normalizedAnything }) {
   );
 }
 
-export default NormalizedAnything;
+export default NormalizedResource;

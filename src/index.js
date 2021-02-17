@@ -14,7 +14,8 @@ const client = new ApolloClient({
     addTypename: true,
     resultCaching: false,
     possibleTypes: {
-      Anything: ["Book", "Author", "User", "BookCopy"]
+      Anything: ["Book", "Author", "User", "BookCopy"],
+      Resource: ["Book", "Author", "User", "BookCopy"]
     }
   }),
   link: new HttpLink({
