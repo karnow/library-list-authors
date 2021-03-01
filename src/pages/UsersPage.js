@@ -8,6 +8,7 @@ import AdminActions from '../components/AdminActions';
 import ButtonLink from "../components/ButtonLink";
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
+import ResetDataButton from '../components/ResetDataButton';
 
 const ALL_USERS_QUERY = gql`
 query GetAllUsers ($searchQuery: String!){
@@ -55,7 +56,8 @@ return <>
 
   </SimpleGrid>
   <AdminActions>
-    <ButtonLink/>
+    <ButtonLink to="/users/new">Create new user</ButtonLink>
+    <ResetDataButton/>
   </AdminActions>
   </>
 
