@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import UserCreateForm from "../components/UserCreateForm";
 import { useToast } from "../components/Toast";
 
 export default function NewUserPage() {
     const toast = useToast();
-  return <UserCreateForm/>;
+    const navigate = useNavigate();
+    return <UserCreateForm onCreate={() => {
+        toast({ status: "warning", description: "NOT IMPLEMENTED" })
+    }} isCreating={false}
+        onCancel={ ()=> navigate("/users")}/>;
 }
