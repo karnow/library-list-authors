@@ -10,6 +10,7 @@ import UserDetailsPage from "./pages/UserDetailsPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import Link from "./components/Link";
+import NewUserPage from "./pages/NewUserPage";
 
 
 function App() {
@@ -57,7 +58,8 @@ function App() {
               <Route path='/users' element={<UsersPage/>}/>
               <Route path='/user/:userId' element={<UserDetailsPage/>}/>
               <Route path='/users/search/' element={<UsersPage/>} />
-              <Route path='/users/search/:searchQuery' element={<UsersPage/>} />
+              <Route path='/users/search/:searchQuery' element={<UsersPage />} />
+              <Route path='/users/new/' element={<NewUserPage />} />
               
               
               <Route path='/admin/resources' element={<ResourcesPage/>}/>

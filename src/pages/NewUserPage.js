@@ -1,5 +1,6 @@
 import React from "react";
+import UserCreateForm from "../components/UserCreateForm";
 
 export default function NewUserPage() {
-  return <p>New user page</p>;
+  return <UserCreateForm/>;
 }
