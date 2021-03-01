@@ -6,6 +6,11 @@ import UserDetails, { USER_DETAILS_FIELDS_FRAGMENT } from "../components/UserDet
 import BookCopy from '../components/BookCopy';
 import { BOOK_COPY_FIELDS_FRAGMENT } from '../components/BookCopy/fragments';
 import BorrowRandomButton from '../components/BorrowRandomBook';
+import AdminActions from '../components/AdminActions';
+import ButtonLink from '../components/ButtonLink';
+import UserDeleteButton from '../components/UserDeleteButton';
+
+
 
 
 export const GET_USER_QUERY = gql`
@@ -46,7 +51,11 @@ export default function UserDetailsPage() {
         <UserDetails user={user} />
         
       </Flex>
-      <BorrowRandomButton/>
+      <BorrowRandomButton />
+      <AdminActions>
+            <ButtonLink to={`/users/${user.id}/edit`}>Edit user</ButtonLink>
+            <UserDeleteButton userId={user.id}/>
+        </AdminActions>
       
     <Grid templateColumns="repeat(5, 1fr)" gap={2}>
       <GridItem colSpan={2} h="10">
@@ -58,6 +67,8 @@ export default function UserDetailsPage() {
          {user.ownedBookCopies.map(bookCopy => <BookCopy key={bookCopy.id} bookCopy={bookCopy} showOwner showBorrower showActions/>)}
         </Flex>
         </GridItem>
+
+        
         
         <GridItem colStart={4} colEnd={6} h="10">
           <Heading as="h5" size="lg" textAlign="center">
