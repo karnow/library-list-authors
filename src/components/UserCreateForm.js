@@ -54,7 +54,7 @@ export default function UserCreateForm({
           isLoading={isCreating}
           loadingText="Creating User..."
           type="submit"
-          variantColor="green"
+          colorScheme="green"
         >
           Create User
         </Button>
