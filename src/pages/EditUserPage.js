@@ -1,9 +1,13 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useToast } from "../components/Toast";
+import UserUpdateForm from "../components/UserUpdateForm";
 import { GET_USER_QUERY } from "./UserDetailsPage";
 
 export default function EditUserPage() {
+    const toast = useToast();
+    const navigate = useNavigate();
     const { userId } = useParams();
   const { loading, error, data } = useQuery(GET_USER_QUERY, {
     variables: { userId }
@@ -18,5 +22,10 @@ export default function EditUserPage() {
   if (!user) {
     return <p> User not found</p>
   }
-  return <p>Edit user ({user.name})page</p>;
+    return <UserUpdateForm
+        user={user}
+        onUpdate={() => {
+        toast({ status: "warning", description: "NOT IMPLEMENTED" })
+    }} isUpdating={false}
+        onCancel={ ()=> navigate(`/user/${user.id}`)}/>;
 }
