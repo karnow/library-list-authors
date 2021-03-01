@@ -11,6 +11,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import Link from "./components/Link";
 import NewUserPage from "./pages/NewUserPage";
+import EditUserPage from "./pages/EditUserPage"
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
               <Route path='/users/search/' element={<UsersPage/>} />
               <Route path='/users/search/:searchQuery' element={<UsersPage />} />
               <Route path='/users/new/' element={<NewUserPage />} />
+              <Route path="users/:userId/edit" element={<EditUserPage />} />
               
               
               <Route path='/admin/resources' element={<ResourcesPage/>}/>
