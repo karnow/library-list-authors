@@ -3,7 +3,9 @@ import {gql, useQuery} from "@apollo/client";
 import User from '../components/User';
 import { SimpleGrid } from '@chakra-ui/react';
 import Link from '../components/Link';
-import {USER_FIELDS_FRAGMENT} from '../components/User';
+import { USER_FIELDS_FRAGMENT } from '../components/User';
+import AdminActions from '../components/AdminActions';
+import ButtonLink from "../components/ButtonLink";
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
 
@@ -51,7 +53,10 @@ return <>
       <p>No users found</p>
     )}
 
-</SimpleGrid>
+  </SimpleGrid>
+  <AdminActions>
+    <ButtonLink/>
+  </AdminActions>
   </>
 
 }
