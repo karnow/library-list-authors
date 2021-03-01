@@ -9,6 +9,7 @@ import BorrowRandomButton from '../components/BorrowRandomBook';
 import AdminActions from '../components/AdminActions';
 import ButtonLink from '../components/ButtonLink';
 import UserDeleteButton from '../components/UserDeleteButton';
+import ResetDataButton from "../components/ResetDataButton";
 
 
 
@@ -44,7 +45,10 @@ export default function UserDetailsPage() {
     return <p>Could not load user "{userId}"</p>;
   }
   const { user } = data;
-  console.log(user)
+  if (!user) {
+    return <p> User not found</p>
+  }
+  
   return (
   <>
     <Flex wrap="wrap" justify="space-around" marginBottom="40px">
@@ -54,7 +58,8 @@ export default function UserDetailsPage() {
       <BorrowRandomButton />
       <AdminActions>
             <ButtonLink to={`/users/${user.id}/edit`}>Edit user</ButtonLink>
-            <UserDeleteButton userId={user.id}/>
+        <UserDeleteButton userId={user.id} />
+        <ResetDataButton/>
         </AdminActions>
       
     <Grid templateColumns="repeat(5, 1fr)" gap={2}>
