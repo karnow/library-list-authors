@@ -1,11 +1,12 @@
 import React from 'react';
 import {gql, useQuery} from "@apollo/client";
 import User from '../components/User';
-import { SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid, Stack } from '@chakra-ui/react';
 import Link from '../components/Link';
 import { USER_FIELDS_FRAGMENT } from '../components/User';
 import AdminActions from '../components/AdminActions';
 import ButtonLink from "../components/ButtonLink";
+import UserDeleteButton from "../components/UserDeleteButton";
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
 import ResetDataButton from '../components/ResetDataButton';
@@ -45,10 +46,16 @@ return <>
 <SimpleGrid columns={["1","2","4"]}> 
 
   {hasUsers ? (
-    users.map(user =>(
-        <Link key={user.id} to={`/user/${user.id}`}>
+      users.map(user => (
+      <Stack key={user.id}>
+        <Link  to={`/user/${user.id}`}>
             <User user={user}/>
-        </Link>
+          </Link>
+          <AdminActions direction="column">
+            <ButtonLink to={`/users/${user.id}/edit`}>Edit user</ButtonLink>
+            <UserDeleteButton userId={user.id}/>
+          </AdminActions>
+      </Stack>
     ))
     ):(
       <p>No users found</p>
