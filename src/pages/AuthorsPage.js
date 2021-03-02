@@ -53,7 +53,7 @@ return <>
           <Author author={author}/>
       </Link>
       <AdminActions direction="column">
-            <ButtonLink to={`/author/${author.id}/edit`}>Edit Author</ButtonLink>
+            <ButtonLink to={`/authors/${author.id}/edit`}>Edit Author</ButtonLink>
             <AuthorDeleteButton authorId={author.id}/>
           </AdminActions>
       </Stack>

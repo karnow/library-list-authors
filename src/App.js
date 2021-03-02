@@ -11,7 +11,9 @@ import ResourcesPage from "./pages/ResourcesPage";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
 import Link from "./components/Link";
 import NewUserPage from "./pages/NewUserPage";
-import EditUserPage from "./pages/EditUserPage"
+import EditUserPage from "./pages/EditUserPage";
+import NewAuthorPage from "./pages/NewAuthorPage";
+import EditAuthorPage from "./pages/EditAuthorPage";
 
 
 function App() {
@@ -54,8 +56,10 @@ function App() {
               <Route path='/authors' element={<AuthorsPage/>} />
               <Route path='/author/:authorId' element={<AuthorDetailsPage/>} />
               <Route path='/authors/search/' element={<AuthorsPage/>} />
-              <Route path='/authors/search/:searchQuery' element={<AuthorsPage/>} />
-              
+              <Route path='/authors/search/:searchQuery' element={<AuthorsPage />} />
+              <Route path='/authors/new/' element={<NewAuthorPage/>} />
+              <Route path='/authors/:authorId/edit' element={<EditAuthorPage/>} />
+                  
               <Route path='/users' element={<UsersPage/>}/>
               <Route path='/user/:userId' element={<UserDetailsPage/>}/>
               <Route path='/users/search/' element={<UsersPage/>} />

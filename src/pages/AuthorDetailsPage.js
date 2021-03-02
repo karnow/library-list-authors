@@ -9,7 +9,7 @@ import AuthorDetails, {AUTHOR_DETAILS_FIRLEDS_FRAGMENT} from "../components/Auth
 
 
 
-const GET_AUTHOR_QUERY = gql`
+export const GET_AUTHOR_QUERY = gql`
   query GetAuthor($authorId: ID!) {
     author(id: $authorId) {
     __typename
@@ -28,7 +28,7 @@ export default function AuthorDetailsPage() {
     return <p>Loading...</p>;
   }
   if (error) {
-    return <p>Could not load book "{authorId}"</p>;
+    return <p>Could not load author "{authorId}"</p>;
   }
   const { author } = data;
 
