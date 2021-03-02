@@ -26,7 +26,7 @@ export default function AuthorUpdateForm({
     });
   }
   return (
-    <Box as="form" mt="5" onSubmit={handleSubmit}>
+    <Box as="form" mt="5" w="100%" onSubmit={handleSubmit}>
       <FormControl isDisabled={isUpdating}>
         <FormLabel htmlFor="name">Name</FormLabel>
         <Input
