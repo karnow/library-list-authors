@@ -1,8 +1,12 @@
 import React from 'react';
 import {gql, useQuery} from "@apollo/client";
 import Author from '../components/Author';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Stack } from '@chakra-ui/react';
 import Link from '../components/Link';
+import AdminActions from '../components/AdminActions';
+import ButtonLink from "../components/ButtonLink";
+import ResetDataButton from '../components/ResetDataButton';
+import AuthorDeleteButton from '../components/AuthorDeleteButton';
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
 
@@ -44,9 +48,15 @@ return <>
  
   {hasAuthors ? (
      authors.map(author =>(
-      <Link key={author.id} to={`/author/${author.id}`}>
+      <Stack key={author.id}>
+      <Link to={`/author/${author.id}`}>
           <Author author={author}/>
       </Link>
+      <AdminActions direction="column">
+            <ButtonLink to={`/author/${author.id}/edit`}>Edit Author</ButtonLink>
+            <AuthorDeleteButton authorId={author.id}/>
+          </AdminActions>
+      </Stack>
   ))
   ) : (
       <p>No authors found</p>
@@ -54,5 +64,10 @@ return <>
 }
 
 </Flex>
+<AdminActions>
+    <ButtonLink to="/authors/new">Create new Author</ButtonLink>
+    <ResetDataButton/>
+  </AdminActions>
       </>
 }
+
