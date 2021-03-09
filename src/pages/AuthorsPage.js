@@ -10,7 +10,7 @@ import AuthorDeleteButton from '../components/AuthorDeleteButton';
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
 
-const ALL_AUTHORS_QUERY = gql`
+export const ALL_AUTHORS_QUERY = gql`
 query GetAllAuthors($searchQuery: String!) {
     authors(searchQuery: $searchQuery) {
       id

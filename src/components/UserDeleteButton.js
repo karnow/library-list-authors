@@ -18,7 +18,7 @@ mutation DeleteUser($userId: ID!) {
 
 export default function UserDeleteButton({userId, ...remainingProps}) {
     const toast = useToast();
-    const [deleteUser, { loading }] = useMutation(DELETE_USER_MUTATION, {
+    const [deleteUser, { loading }] = useMutation(DELETE_USER_MUTATION, { variables: {userId},
         onCompleted: ({ deleteUser: { success, message } }) => {
             toast({
                 description: message,
@@ -52,10 +52,8 @@ export default function UserDeleteButton({userId, ...remainingProps}) {
     });
 
     return <Button onClick={() => {
-        deleteUser({
-            variables: {userId}
-        });
-        toast({ status: "warning", description: "NOT IMPLEMENTED" })
+        deleteUser();
+        
     }}
     isLoading={loading} {...remainingProps}>Delete user</Button>
 
