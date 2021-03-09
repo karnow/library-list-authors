@@ -11,7 +11,7 @@ import UserDeleteButton from "../components/UserDeleteButton";
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
 import ResetDataButton from '../components/ResetDataButton';
 
-const ALL_USERS_QUERY = gql`
+export const ALL_USERS_QUERY = gql`
 query GetAllUsers ($searchQuery: String!){
     users (searchQuery: $searchQuery) {
      __typename
