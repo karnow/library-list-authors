@@ -1,9 +1,24 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 import React from "react";
 import { useNavigate, useParams } from "react-router";
 import { useToast } from "../components/Toast";
 import UserUpdateForm from "../components/UserUpdateForm";
 import { GET_USER_QUERY } from "./UserDetailsPage";
+import { USER_DETAILS_FIELDS_FRAGMENT } from "../components/UserDetails";
+
+const UPDATE_USER_MUTATION = gql`
+mutation UpdateUser($updateUserInput: UpdateUserInput!){
+  updateUser(input: $updateUserInput){
+    success
+    message
+    user {
+      ...userDetailFields
+    }
+  }
+}
+${USER_DETAILS_FIELDS_FRAGMENT}
+`;
+
 
 export default function EditUserPage() {
     const toast = useToast();
@@ -11,6 +26,18 @@ export default function EditUserPage() {
     const { userId } = useParams();
   const { loading, error, data } = useQuery(GET_USER_QUERY, {
     variables: { userId }
+  });
+  const [updateUser, { loading: isUpdating }] = useMutation(UPDATE_USER_MUTATION, {
+    onCompleted: ({ updateUser: { success, message } }) => {
+      toast({
+        description: message,
+        status: success ? "success" : "error"
+      });
+      if (success) {
+        navigate(`/user/${userId}`);
+      }
+      
+    }
   });
   if (loading) {
     return <p>Loading...</p>;
@@ -24,8 +51,6 @@ export default function EditUserPage() {
   }
     return <UserUpdateForm
         user={user}
-        onUpdate={() => {
-        toast({ status: "warning", description: "NOT IMPLEMENTED" })
-    }} isUpdating={false}
+        onUpdate={(updateUserInput) => {updateUser({variables: {updateUserInput}})}} isUpdating={isUpdating}
         onCancel={ ()=> navigate(`/user/${user.id}`)}/>;
 }
