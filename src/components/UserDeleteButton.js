@@ -27,19 +27,24 @@ export default function UserDeleteButton({userId, ...remainingProps}) {
             
         },
         update: cache => {
-            const cachedData = cache.readQuery(
-                {
-                    query: ALL_USERS_QUERY,
-                    variables: {searchQuery: "" }
-                }
-            )
-            cache.writeQuery({
+            try {
+                const cachedData = cache.readQuery(
+                    {
+                        query: ALL_USERS_QUERY,
+                        variables: { searchQuery: "" }
+                    }
+                )
+                cache.writeQuery({
                     query: ALL_USERS_QUERY,
                     variables: { searchQuery: "" },
                     data: {
-                        users: cachedData.users.filter(user=> user.id !== userId)
+                        users: cachedData.users.filter(user => user.id !== userId)
                     }
-            })
+                })
+                console.info("Updated cached users data.")
+            } catch (error) {
+                console.info("Did not update cached user data:", error)
+             }
             cache.writeQuery({
                 query: GET_USER_QUERY,
                 variables: { userId },
