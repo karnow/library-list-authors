@@ -20,7 +20,7 @@ ${BOOK_COPY_FIELDS_FRAGMENT}
 export default function BorrowButton({ availableBookCopy }) {
 
   const toast = useToast();
-  const [borrowBookcopy, { loading, data }] = useMutation(BORROW_BOOK_COPY_MUTATION, {
+  const [borrowBookcopy, { loading }] = useMutation(BORROW_BOOK_COPY_MUTATION, {
     variables: { bookCopyId: availableBookCopy.id },
     onCompleted: () => {
       toast({
@@ -43,6 +43,7 @@ export default function BorrowButton({ availableBookCopy }) {
       });
     },
     refetchQueries: ({ data }) => {
+      console.log(data)
       return [
         {
           query: GET_USER_QUERY,

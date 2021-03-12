@@ -31,6 +31,10 @@ export default function AuthorDetailsPage() {
     return <p>Could not load author "{authorId}"</p>;
   }
   const { author } = data;
+  // console.log(`jestem na authorDetailsPage ${author.name}`);
+  if (!author) {
+    return <p>Author not found</p>
+  }
 
   return (
     <Box>

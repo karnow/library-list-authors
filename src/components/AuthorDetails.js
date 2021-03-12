@@ -23,6 +23,7 @@ ${BOOK_FIELDS_FRAGMENT}
 
 
 export default function AuthorDetails({ author }) {
+  console.log(`jestem na authordetal author.name: ${author.name}`)
   return (
     <Flex m="3" overflow="hidden" direction="column" align="center">
       <Heading as="h2" size="lg" color="gray.700" my="3">

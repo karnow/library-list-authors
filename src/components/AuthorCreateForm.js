@@ -22,7 +22,7 @@ export default function AuthorCreateForm({
     e.preventDefault();
     onCreate({
       name: nameRef.current.value,
-      info: bioRef.current.value
+      bio: bioRef.current.value
     });
   }
   return (
@@ -33,7 +33,7 @@ export default function AuthorCreateForm({
       </FormControl>
       
       <FormControl isDisabled={isCreating}>
-        <FormLabel htmlFor="info">Bio</FormLabel>
+        <FormLabel htmlFor="bio">Bio</FormLabel>
         <Textarea
           ref={bioRef}
           id="bio"

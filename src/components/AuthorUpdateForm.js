@@ -17,6 +17,7 @@ export default function AuthorUpdateForm({
 }) {
   const nameRef = useRef();
   const bioRef = useRef();
+  
   function handleSubmit(e) {
     e.preventDefault();
     onUpdate({

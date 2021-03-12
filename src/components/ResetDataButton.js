@@ -21,6 +21,7 @@ export default function ResetDataButton(props) {
             });
             if (success) {
                 client.resetStore();
+                console.log("zresetowałem baze danych")
             }
         }
     });
