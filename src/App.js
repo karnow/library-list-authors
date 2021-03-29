@@ -15,7 +15,8 @@ import EditUserPage from "./pages/EditUserPage";
 import NewAuthorPage from "./pages/NewAuthorPage";
 import EditAuthorPage from "./pages/EditAuthorPage";
 import Header from "./components/Header"
-import LogInPage from "./pages/LogInPage"
+import LogInPage from "./pages/LogInPage";
+import SignUpPage from "./pages/SignUpPage";
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
               <Route path='/' element={<BooksPage/>} />
               <Route path='/books/search/' element={<BooksPage />} />
               {/* <Route path="/me" element={<CurrentUserDetailsPage />} /> */}
-              {/* <Route path='/signup' element={<SignUpPage />} /> */}
+              <Route path='/signup' element={<SignUpPage />} />
               <Route path='/login' element={<LogInPage />} />
           
               <Route path='/books/search/:searchQuery' element={<BooksPage/>} />
