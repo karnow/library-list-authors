@@ -15,6 +15,7 @@ import EditUserPage from "./pages/EditUserPage";
 import NewAuthorPage from "./pages/NewAuthorPage";
 import EditAuthorPage from "./pages/EditAuthorPage";
 import Header from "./components/Header"
+import LogInPage from "./pages/LogInPage"
 
 
 function App() {
@@ -29,7 +30,11 @@ function App() {
       <Header />
             <Routes>
               <Route path='/' element={<BooksPage/>} />
-              <Route path='/books/search/' element={<BooksPage/>} />
+              <Route path='/books/search/' element={<BooksPage />} />
+              {/* <Route path="/me" element={<CurrentUserDetailsPage />} /> */}
+              {/* <Route path='/signup' element={<SignUpPage />} /> */}
+              <Route path='/login' element={<LogInPage />} />
+          
               <Route path='/books/search/:searchQuery' element={<BooksPage/>} />
               <Route path='/books/:bookId' element={<BookDetailsPage/>} />
       
@@ -53,7 +58,7 @@ function App() {
               </Routes>
       </Flex>
       
-      
+
       </Router>
     
       
