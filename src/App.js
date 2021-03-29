@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Heading} from "@chakra-ui/react";
+import {Flex} from "@chakra-ui/react";
 import React from "react";
 import AuthorsPage from './pages/AuthorsPage';
 import UsersPage from "./pages/UsersPage";
@@ -14,39 +14,19 @@ import NewUserPage from "./pages/NewUserPage";
 import EditUserPage from "./pages/EditUserPage";
 import NewAuthorPage from "./pages/NewAuthorPage";
 import EditAuthorPage from "./pages/EditAuthorPage";
+import Header from "./components/Header"
 
 
 function App() {
   return (
     <Router>
-      <Flex direction="column" align="center" width={["100%","75%","60%"]} mx="auto">
-        <Flex direction={["column",null,"row"]} align="center" justifyContent="space-between" width="100%">
-        <Link to='/' >
-      <Heading as="h1">Personal Library</Heading>
-       </Link>
-       
-              <Flex>
-              <Link to='/' >
-            <Box as="span" margin="10px">Books</Box>
-              </Link>
-            
-              <Link to='/authors' >
-            <Box as="span" margin="10px">Authors</Box>
-              </Link>
-              <Divider orientation='vertical' />
-
-              <Link to='/users' >
-            <Box as="span" margin="10px">Users</Box>
-              </Link>
-
-              {/* <Link to='/admin/anything/:anyId' as={Routerlink}>
-            <Box as="span" margin="10px">AnythingDetailsPage</Box>
-              </Link> */}
-
-              <Divider orientation='vertical' />
-             
-              </Flex>
-            </Flex>
+      <Flex
+      direction="column"
+      align="center"
+      width={["100%", "75%", "60%"]}
+      mx="auto"
+    >
+      <Header />
             <Routes>
               <Route path='/' element={<BooksPage/>} />
               <Route path='/books/search/' element={<BooksPage/>} />
@@ -74,8 +54,9 @@ function App() {
       </Flex>
       
       
-    
       </Router>
+    
+      
       );
       
     }

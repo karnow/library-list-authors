@@ -21,17 +21,22 @@ function Header(props) {
       </Link>
 
       <Box d="flex" align="center" justifyContent="space-between">
-        <Link to="/">
-          <h1>Books</h1>
-        </Link>
+        <Link to='/' >
+            <Box as="span" margin="10px">Books</Box>
+              </Link>
+              
         <Divider orientation="vertical" />
-        <Link to="/authors">
-          <h1>Authors</h1>
-        </Link>
-        <Divider orientation="vertical" />
-        <Link to="/users">
-          <h1>Users</h1>
-        </Link>
+              
+        <Link to='/authors' >
+            <Box as="span" margin="10px">Authors</Box>
+              </Link>
+              
+              <Divider orientation="vertical" />
+              
+        <Link to='/users' >
+            <Box as="span" margin="10px">Users</Box>
+              </Link>
+              
         <Divider orientation="vertical" />
         {!currentUser ? (
           <GuestMenu />
