@@ -7,21 +7,43 @@ import CurrentUserDetails, {
   CURRENT_USER_DETAILS_FIELDS_FRAGMENT
 } from "../components/CurrentUserDetails";
 
+
 export const GET_CURRENT_USER_QUERY = gql`
   query GetCurrentUser {
     currentUser {
-      ...currentUserDetailsFields
-      ownedBookCopies {
-        ...bookCopyFields
+      id
+    name
+    email
+    info
+    avatar {
+      image {
+        url
       }
-      borrowedBookCopies {
-        ...bookCopyFields
-      }
+      color
+    }
+    isAdmin
+    email
     }
   }
-  ${CURRENT_USER_DETAILS_FIELDS_FRAGMENT}
-  ${BOOK_COPY_FIELDS_FRAGMENT}
-`;
+ `;
+
+// export const GET_CURRENT_USER_QUERY = gql`
+//   query GetCurrentUser {
+//     currentUser {
+//       ...currentUserDetailsFields
+//       ownedBookCopies {
+//         ...bookCopyFields
+//       }
+//       borrowedBookCopies {
+//         ...bookCopyFields
+//       }
+//     }
+//   }
+//   ${CURRENT_USER_DETAILS_FIELDS_FRAGMENT}
+//   ${BOOK_COPY_FIELDS_FRAGMENT}
+// `;
+
+
 
 export default function CurrentUserDetailsPage() {
   const { loading, error, data } = useQuery(GET_CURRENT_USER_QUERY);
@@ -30,13 +52,15 @@ export default function CurrentUserDetailsPage() {
     return <p>Loading...</p>;
   }
   if (error) {
+      console.log(error)
     return <p>Could not load currentUser...</p>;
     }
     const { currentUser } = data;
     if (!currentUser) {
+        console.log(currentUser)
         return <p>You need to be logged in to see this page</p>;
     }
-    console.log("dane: ",data);
+    
   return (
     <Stack>
       <CurrentUserDetails currentUser={currentUser} />

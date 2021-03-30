@@ -5,10 +5,10 @@ import { Stack, Text } from "@chakra-ui/react";
 
 export const CURRENT_USER_DETAILS_FIELDS_FRAGMENT = gql`
   fragment currentUserDetailsFields on User {
-    ...userDetailsFields
+    ...userDetailFields
     isAdmin
     email
-  }
+   }
   ${USER_DETAILS_FIELDS_FRAGMENT}
 `;
 
