@@ -3,9 +3,10 @@ import { Flex, Heading, Box, Divider } from "@chakra-ui/react";
 import Link from "./Link";
 import GuestMenu from "./Header/GuestMenu";
 import UserMenu from "./Header/UserMenu";
+import { useAuth } from "./AuthProvider";
 
 function Header(props) {
-  const currentUser = null;
+  const { currentUser } = useAuth();
 
   return (
     <Flex

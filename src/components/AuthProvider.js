@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 
 
@@ -8,4 +8,21 @@ const DEFAULT_VALUE = {
     unauthorize: ()  => console.log("Trying to unauthorize")
 };
 
-const AuthContext = React.createContext(DEFAULT_VALUE);
+export const AuthContext = React.createContext(DEFAULT_VALUE);
+
+//uzycie custom hook'a zamiast bezposrenio usecontext hook'a
+export function useAuth() {
+    return useContext(AuthContext);
+}
+
+function AuthProvider({ children }) {
+    const authValue = {
+        ...DEFAULT_VALUE
+    };
+
+    return (
+        <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
+    )
+}
+
+export default AuthProvider;

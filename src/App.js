@@ -9,7 +9,7 @@ import AuthorDetailsPage from "./pages/AuthorDetailsPage";
 import UserDetailsPage from "./pages/UserDetailsPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import ResourceDetailsPage from "./pages/ResourceDetailsPage";
-import Link from "./components/Link";
+
 import NewUserPage from "./pages/NewUserPage";
 import EditUserPage from "./pages/EditUserPage";
 import NewAuthorPage from "./pages/NewAuthorPage";
