@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router";
 
+function saveAuthToken(token) {
+    localStorage.setItem("token", token);
+}
 
 
 const DEFAULT_VALUE = {
@@ -16,8 +20,15 @@ export function useAuth() {
 }
 
 function AuthProvider({ children }) {
+    const navigate = useNavigate();
+    function authorize(token) {
+        saveAuthToken(token);
+        navigate("/");
+        
+    }
     const authValue = {
-        ...DEFAULT_VALUE
+        ...DEFAULT_VALUE,
+        authorize
     };
 
     return (

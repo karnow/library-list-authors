@@ -22,7 +22,7 @@ import CurrentUserDetailsPage from "./pages/CurrentUserDetailsPage"
 
 function App() {
   return (
-    <Router>
+    
       <Flex
       direction="column"
       align="center"
@@ -61,7 +61,7 @@ function App() {
       </Flex>
       
 
-      </Router>
+     
     
       
       );
