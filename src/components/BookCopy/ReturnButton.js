@@ -37,12 +37,29 @@ export default function BorrowButton({ borrowedBookCopy }) {
         isClosable: true
       });
     },
-    refetchQueries: [
-      {
-        query: GET_USER_QUERY,
-        variables: {userId: borrowedBookCopy.borrower.id}
-      }
-    ]
+    update: cache => {
+      try {
+        const cachedData = cache.readQuery({
+          query: GET_USER_QUERY,
+          variables: { userId: borrowedBookCopy.borrower.id }
+        });
+        const data = JSON.parse(JSON.stringify(cachedData));
+        data.user.borrowedBookCopies = data.user.borrowedBookCopies.filter(
+          bookCopy => bookCopy.id !== borrowedBookCopy.id
+        );
+        cache.writeQuery({
+          query: GET_USER_QUERY,
+          variables: { userId: borrowedBookCopy.borrower.id },
+          data
+        });
+      } catch (error) {}
+    }
+    // refetchQueries: [
+    //   {
+    //     query: GET_USER_QUERY,
+    //     variables: {userId: borrowedBookCopy.borrower.id}
+    //   }
+    // ]
   })
   return (
     <Button disabled={loading} onClick={returnBookcopy}>

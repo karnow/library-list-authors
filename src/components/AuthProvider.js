@@ -5,6 +5,9 @@ function saveAuthToken(token) {
     localStorage.setItem("token", token);
 }
 
+export function getAuthToken() {
+   return localStorage.getItem("token") || null;
+}
 
 const DEFAULT_VALUE = {
     currentUser: null,

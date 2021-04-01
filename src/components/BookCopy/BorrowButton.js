@@ -42,15 +42,30 @@ export default function BorrowButton({ availableBookCopy }) {
         isClosable: true
       });
     },
-    refetchQueries: ({ data }) => {
-      console.log(data)
-      return [
-        {
+    update: (cache, { data: { borrowBookCopy } }) => {
+      try {
+        const cachedData = cache.readQuery({
           query: GET_USER_QUERY,
-          variables: { userId: data.borrowBookCopy.borrower.id }
-        }
-      ];
+          variables: { userId: borrowBookCopy.borrower.id }
+        });
+        const data = JSON.parse(JSON.stringify(cachedData));
+        data.user.borrowedBookCopies.push(borrowBookCopy);
+        cache.writeQuery({
+          query: GET_USER_QUERY,
+          variables: { userId: borrowBookCopy.borrower.id },
+          data
+        });
+      } catch (error) {}
     }
+    // refetchQueries: ({ data }) => {
+    //   console.log(data)
+    //   return [
+    //     {
+    //       query: GET_USER_QUERY,
+    //       variables: { userId: data.borrowBookCopy.borrower.id }
+    //     }
+    //   ];
+    // }
 
   });
 

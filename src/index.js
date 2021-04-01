@@ -4,11 +4,11 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {ApolloClient, InMemoryCache, HttpLink, ApolloProvider} from "@apollo/client";
 import './index.css';
 import App from './App';
-import AuthProvider from "./components/AuthProvider";
+import AuthProvider, { getAuthToken } from "./components/AuthProvider";
 import {theme , CSSReset, ChakraProvider} from "@chakra-ui/react";
 
 const GRAPHQL_ENDPOINT = "https://library-applicationn.herokuapp.com/";
-
+const token = getAuthToken();
 const client = new ApolloClient({
   cache: new InMemoryCache({
     addTypename: true,
@@ -19,11 +19,13 @@ const client = new ApolloClient({
     }
   }),
   link: new HttpLink({
-    uri: GRAPHQL_ENDPOINT
-  }),
-  queryDeduplication: false
+      uri: GRAPHQL_ENDPOINT,
+      headers: {
+      Authorization: token ? `Bearer ${token}` : null
+    },
+    }),
+    queryDeduplication: false
 });
-
 
 
 

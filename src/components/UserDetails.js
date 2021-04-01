@@ -6,7 +6,6 @@ export const USER_DETAILS_FIELDS_FRAGMENT = gql`
 fragment userDetailFields on User {
     id
     name
-    email
     info
     avatar {
       image {
