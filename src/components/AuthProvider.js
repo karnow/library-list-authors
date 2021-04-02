@@ -1,5 +1,7 @@
+import { useQuery } from "@apollo/client";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
+import { GET_CURRENT_USER_QUERY } from "../pages/CurrentUserDetailsPage";
 
 function saveAuthToken(token) {
     localStorage.setItem("token", token);
@@ -24,15 +26,19 @@ export function useAuth() {
 
 function AuthProvider({ children }) {
     const navigate = useNavigate();
+    const { loading, error, data } = useQuery(GET_CURRENT_USER_QUERY);
     function authorize(token) {
         saveAuthToken(token);
         navigate("/");
-        
     }
     const authValue = {
         ...DEFAULT_VALUE,
         authorize
     };
+
+    if (!loading && !error) {
+    authValue.currentUser = data.currentUser;
+    }
 
     return (
         <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
