@@ -33,7 +33,7 @@ export function useAuth() {
 function AuthProvider({ children }) {
     const navigate = useNavigate();
     const toast = useToast();
-    const { loading, error, data, client } = useQuery(GET_CURRENT_USER_QUERY);
+    const { loading, error, data, client ,refetch} = useQuery(GET_CURRENT_USER_QUERY);
     function unauthorize() {
         cleanAuthToken();
         client.resetStore();
@@ -48,6 +48,7 @@ function AuthProvider({ children }) {
     function authorize(token) {
         saveAuthToken(token);
         navigate("/");
+        refetch();
     }
     const authValue = {
         ...DEFAULT_VALUE,
