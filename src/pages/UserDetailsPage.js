@@ -45,6 +45,7 @@ export default function UserDetailsPage() {
     return <p>Could not load user "{userId}"</p>;
   }
   const { user } = data;
+  console.log(user);
   if (!user) {
     return <p> User not found</p>
   }
