@@ -4,6 +4,7 @@ import { useToast } from "./Toast";
 import { ALL_AUTHORS_QUERY } from "../pages/AuthorsPage";
 import { GET_AUTHOR_QUERY } from "../pages/AuthorDetailsPage";
 import { gql, useMutation } from "@apollo/client";
+import { GET_BOOKS_QUERY } from "../pages/BooksPage";
 
 
 const DELETE_AUTHOR_MUTATION = gql`
@@ -48,7 +49,15 @@ export default function AuthorDeleteButton({authorId, ...remainingProps}) {
                 author: null
                 }
             })
-        },
+          },
+        refetchQueries: () => {
+      return [
+        {
+          query: GET_BOOKS_QUERY,
+          variables: { searchQuery: "" }
+        }
+      ];
+    }
         
     });
     return <Button onClick={() => {

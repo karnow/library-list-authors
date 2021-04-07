@@ -9,7 +9,7 @@ import SearchBox, {useSearchQuery} from '../components/SearchBox';
 
 
 
-const GET_BOOKS_QUERY = gql`
+export const GET_BOOKS_QUERY = gql`
 query GetBooks($searchQuery: String!) {
   books(searchQuery: $searchQuery) {
    __typename
