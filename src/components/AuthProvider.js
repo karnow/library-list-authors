@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
-import React, { useContext } from "react";
+import { decode } from "jsonwebtoken";
+import React, { useCallback, useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { GET_CURRENT_USER_QUERY } from "../pages/CurrentUserDetailsPage";
 import { useToast } from "./Toast";
@@ -15,6 +16,15 @@ function cleanAuthToken() {
 
 export function getAuthToken() {
    return localStorage.getItem("token") || null;
+}
+
+function getAuthTokenPayload() {
+    const token = getAuthToken();
+    if (!token) {
+        return {};
+    }
+    const payload = decode(token);
+    return payload;
 }
 
 const DEFAULT_VALUE = {
@@ -33,8 +43,9 @@ export function useAuth() {
 function AuthProvider({ children }) {
     const navigate = useNavigate();
     const toast = useToast();
-    const { loading, error, data, client ,refetch} = useQuery(GET_CURRENT_USER_QUERY);
-    function unauthorize() {
+    const { loading, error, data, client, refetch } = useQuery(GET_CURRENT_USER_QUERY);
+    
+    const unauthorize = useCallback(function () {
         cleanAuthToken();
         client.resetStore();
         navigate("/");
@@ -42,9 +53,22 @@ function AuthProvider({ children }) {
             status: "success",
             description: "You've successfully loggedd out"
         })
-
-    }
+    }, [client, navigate, toast]);
     
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const payload = getAuthTokenPayload();
+            const nowInSecound = Math.round(Date.now() / 1000);
+            console.log(payload.exp - nowInSecound);
+            if (payload.exp - nowInSecound < 15) {
+                unauthorize();
+            }
+        }, 5000);
+        return () => {
+            clearInterval(intervalId);
+        }
+    },[unauthorize])
+
     function authorize(token) {
         saveAuthToken(token);
         navigate("/");
