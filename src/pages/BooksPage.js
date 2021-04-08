@@ -27,8 +27,8 @@ export default function BooksPage() {
   const [searchQuery, handleSearchQueryChange] = useSearchQuery(baseSearchPath);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
  
- const { loading, error, data} = useQuery(GET_BOOKS_QUERY, {
-   variables: { searchQuery, pageNumber: currentPageNumber}
+ const { loading, error, data, fetchMore} = useQuery(GET_BOOKS_QUERY, {
+   variables: { searchQuery}
  });
  if (loading) {
      return <p>loading ...</p>
@@ -55,7 +55,19 @@ return (
           </Link>
       ))
         }
-      <SimplePagination pageNumber={currentPageNumber} onPageChange={(pageNumber) =>setCurrentPageNumber(pageNumber)} />
+        <SimplePagination pageNumber={currentPageNumber} onPageChange={(pageNumber) => {
+          fetchMore({
+            variables: { pageNumber },
+            updateQuery: (previousQueryResult, { fetchMoreResult }) => {
+              console.log({ previousQueryResult, fetchMoreResult });
+              if (!fetchMoreResult) {
+                return previousQueryResult;
+              }
+              return fetchMoreResult;
+            }
+          })
+          setCurrentPageNumber(pageNumber);
+        }} />
       </>
       ) : (
         <p>No books found</p>
