@@ -12,9 +12,17 @@ import SimplePagination from '../components/SimplePagination';
 
 export const GET_BOOKS_QUERY = gql`
 query GetBooks($searchQuery: String!, $pageNumber: Int = 1) {
-  books(searchQuery: $searchQuery, pageSize: 3, pageNumber: $pageNumber) {
+  paginatedBooks(searchQuery: $searchQuery, pageSize: 3, pageNumber: $pageNumber) {
    __typename
-    ...bookFields
+   results{
+   ...bookFields
+   }
+   pageInfo{
+     currentPageNumber,
+     previousPageNumber,
+     nextPageNumber
+
+   }
   }
 }
 ${BOOK_FIELDS_FRAGMENT}
@@ -25,7 +33,7 @@ ${BOOK_FIELDS_FRAGMENT}
 export default function BooksPage() {
   const baseSearchPath ="/books/search/";
   const [searchQuery, handleSearchQueryChange] = useSearchQuery(baseSearchPath);
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  
  
  const { loading, error, data, fetchMore} = useQuery(GET_BOOKS_QUERY, {
    variables: { searchQuery}
@@ -37,7 +45,9 @@ export default function BooksPage() {
     return <p>Could not load books...</p>
  }
 
- const {books} = data;
+  const { paginatedBooks } = data;
+  const { results: books, pageInfo } = paginatedBooks;
+  
  const hasBooks = books.length > 0;
 
 console.log(searchQuery)
@@ -55,7 +65,7 @@ return (
           </Link>
       ))
         }
-        <SimplePagination pageNumber={currentPageNumber} onPageChange={(pageNumber) => {
+        <SimplePagination pageInfo={pageInfo} onPageChange={(pageNumber) => {
           fetchMore({
             variables: { pageNumber },
             updateQuery: (previousQueryResult, { fetchMoreResult }) => {
@@ -66,7 +76,7 @@ return (
               return fetchMoreResult;
             }
           })
-          setCurrentPageNumber(pageNumber);
+          
         }} />
       </>
       ) : (
