@@ -1,16 +1,22 @@
 import { Button, Flex } from "@chakra-ui/react";
 import React from "react";
+import PageButton from "./Pagination/PageButton";
 
 export default function SimplePagination({ pageInfo, onPageChange }) {
   const { currentPageNumber, previousPageNumber, nextPageNumber } = pageInfo;
-    
+  const commonPageButtonProps = { currentPageNumber, onPageChange }
   return (
     <Flex justifyContent="space-between" my="5">
-          <Button disabled={!previousPageNumber} onClick={() => onPageChange(previousPageNumber)}>
+          <PageButton newPageNumber={previousPageNumber} {...commonPageButtonProps}>
         Previous Page
-      </Button>
-      <Button disabled>{currentPageNumber}</Button>
-      <Button disabled={!nextPageNumber} onClick={() => onPageChange(nextPageNumber)}>Next Page</Button>
+      </PageButton>
+      <PageButton
+        newPageNumber={currentPageNumber}
+        {...commonPageButtonProps}
+      />
+      <PageButton newPageNumber={nextPageNumber} {...commonPageButtonProps}>
+        Next Page
+      </PageButton>
     </Flex>
   );
 }
