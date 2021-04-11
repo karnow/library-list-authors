@@ -9,8 +9,7 @@ export default function PageButton({
   remainingProps
 }) {
   return (
-    <Button
-      disabled={!newPageNumber || newPageNumber === currentPageNumber}
+    <Button disabled={!newPageNumber || newPageNumber === currentPageNumber}
       onClick={() => onPageChange(newPageNumber)}
       {...remainingProps}
     >

@@ -6,14 +6,14 @@ import Link from '../components/Link';
 
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
-import Pagination from '../components/ComplexPaginations';
+import Pagination from '../components/LoadMorePagination';
 
 
 
 export const GET_BOOKS_QUERY = gql`
 query GetBooks($searchQuery: String!, $pageNumber: Int = 1) {
   books(searchQuery: $searchQuery, pageSize: 3, pageNumber: $pageNumber) {
-   __typename
+   
    results{
    ...bookFields
    }
@@ -29,7 +29,26 @@ query GetBooks($searchQuery: String!, $pageNumber: Int = 1) {
 }
 ${BOOK_FIELDS_FRAGMENT}
 `;
-
+function upadateQueryByReplacing (previousQueryResult, { fetchMoreResult }) {
+              
+if (!fetchMoreResult) {
+return previousQueryResult;
+  }
+return fetchMoreResult;
+}
+            
+function updateQueryByAppending (previousQueryResult, { fetchMoreResult }) {
+  if (!fetchMoreResult) {
+  return previousQueryResult;
+  }
+  
+  return( {
+    books: {
+      results: [...previousQueryResult.books.results,...fetchMoreResult.books.results],
+      pageInfo: {...fetchMoreResult.books.pageInfo}
+    }
+  })
+}
 
 
 export default function BooksPage() {
@@ -51,7 +70,7 @@ export default function BooksPage() {
 
   const hasBooks = books.length > 0;
 
-console.log(searchQuery)
+
 return (
     <Box w="100%">
       
@@ -69,13 +88,7 @@ return (
         <Pagination pageInfo={pageInfo} onPageChange={(pageNumber) => {
           fetchMore({
             variables: { pageNumber },
-            updateQuery: (previousQueryResult, { fetchMoreResult }) => {
-              console.log({ previousQueryResult, fetchMoreResult });
-              if (!fetchMoreResult) {
-                return previousQueryResult;
-              }
-              return fetchMoreResult;
-            }
+            updateQuery: updateQueryByAppending
           })
           
         }} />
