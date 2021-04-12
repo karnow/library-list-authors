@@ -6,13 +6,13 @@ import Link from '../components/Link';
 
 
 import SearchBox, {useSearchQuery} from '../components/SearchBox';
-import Pagination from '../components/LoadMorePagination';
+import Pagination from '../components/ComplexPaginations';
 
 
 
 export const GET_BOOKS_QUERY = gql`
 query GetBooks($searchQuery: String!, $pageNumber: Int = 1) {
-  books(searchQuery: $searchQuery, pageSize: 3, pageNumber: $pageNumber) {
+  books(searchQuery: $searchQuery, pageSize: 5, pageNumber: $pageNumber) {
    
    results{
    ...bookFields
@@ -88,7 +88,7 @@ return (
         <Pagination pageInfo={pageInfo} onPageChange={(pageNumber) => {
           fetchMore({
             variables: { pageNumber },
-            updateQuery: updateQueryByAppending
+            updateQuery: upadateQueryByReplacing
           })
           
         }} />

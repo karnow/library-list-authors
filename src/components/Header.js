@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Heading, Box, Divider } from "@chakra-ui/react";
+import { Flex, Heading, Box, Divider, Center } from "@chakra-ui/react";
 import Link from "./Link";
 import GuestMenu from "./Header/GuestMenu";
 import UserMenu from "./Header/UserMenu";
@@ -25,20 +25,24 @@ function Header(props) {
         <Link to='/' >
             <Box as="span" margin="10px">Books</Box>
               </Link>
-              
-        <Divider orientation="vertical" />
-              
+          <Center height="20px">   
+        <Divider orientation="vertical"/>
+              </Center> 
         <Link to='/authors' >
             <Box as="span" margin="10px">Authors</Box>
               </Link>
               
-              <Divider orientation="vertical" />
+              <Center height="20px">   
+        <Divider orientation="vertical"/>
+              </Center> 
               
         <Link to='/users' >
             <Box as="span" margin="10px">Users</Box>
               </Link>
               
-        <Divider orientation="vertical" />
+        <Center height="20px">   
+        <Divider orientation="vertical"/>
+              </Center> 
         {!currentUser ? (
           <GuestMenu />
         ) : (
